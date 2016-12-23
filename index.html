@@ -91,7 +91,7 @@ that there exist well defined functions from integers to integers that
 no program (or formally any model of computation that can be simulated
 on a Turing Machine) can possibly compute. The famous function that
 Turing gave is that of the halting problem: this is the function that
-is 1 if the input string is a valid encoding of a program that
+is 1 if the input integer is a valid encoding of a program that
 terminates in a finite amount of time, and 0 otherwise. In
 introductory computer science theory courses, this is the canonical
 example used to demonstrate the existence of incomputable functions.
@@ -101,7 +101,7 @@ example used to demonstrate the existence of incomputable functions.
 
 <p>Today I would like to present an alternative example of an incomputable
 function. Given an integer as well as an agreed upon programming language,
-what is the shortest program that takes no input and outputs the string
+what is the shortest program that takes no input and prints the integer
 after a finite number of steps? This quantity is known as the Kolmogorov
 Complexity of the integer, and is studied in great depth in the field of
 information theory as a measure of how much information the integer
@@ -152,8 +152,9 @@ than 100 words.</p>
 
 <p>Now let's try to reproduce the paradox more formally. Suppose for the sake of
 contradiction that there existed a program called $M_K$ that could compute
-$K(x)$ for any input $x$. We now construct another program $M_c$
-(parametrized by some number $c$) that uses $M_K$ as a subroutine:</p>
+$K(x)$ (that's the length of shortest possible description of $x$, remember!) for
+any input $x$. We now construct another program $M_c$ (parametrized by some
+number $c$) that uses $M_K$ as a subroutine:</p>
 <script type="text/javascript">
  $(document).ready(function() {
      $('#mc').pseudocode();
@@ -184,7 +185,7 @@ $\leq A$, these output a finite set $S$ of things. Since there are an infinite
 number of integers, any integer $t$ outside of $S$ must have $K(t) > A$ since
 $t$ was not output by any program of length $\leq A$. In particular this is
 true of our choice of $c$.</li>
-<li>What if it is not possible to find $c$ such that $M_c < c$? It is true that
+<li>What if it is not possible to find $c$ such that $|M_c| < c$? It is true that
 $M_c$ needs to encode $c$, and so $|M_c|$ must grow with $c$. However if we do
 the obvious thing and encode $c$ in binary within $M_c$, then $|M_c|$ grows
 as $O(\log c)$, while $c$ is $\Omega(c)$ (duh). Thus there is definitely such
