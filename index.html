@@ -9,6 +9,7 @@ src="bower_components/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
+<link rel="icon" href="hierarchy.png">
 </head>
 
 
@@ -197,7 +198,7 @@ a $c$.</li>
 
 <p>We have done some good work. We just proved that the optimal compression
 scheme for an arbitrary string cannot be determined in general (even though it
-exists and is well defined). This also goes by the name full employment theorem,
+exists and is well defined). This also goes by the name Full Employment Theorem,
 because it guarantees there will never be a one size fits all solution to
 compression: in other words there will always be work left for computer
 scientists to do.</p>
@@ -205,8 +206,8 @@ scientists to do.</p>
 <p>We can also derive the proof that the halting problem is incomputable as an
 easy corollary. If we could solve the halting problem, we can compute
 Kolmogorov complexity. Given an integer $x$, simply examine every Turing
-machine in lexicographical order. If it does not halt, throw it away. If it
-does and it returns $x$, return the length of that Turing Machine.</p>
+machine in lexicographical order. If it does not halt or return $x$, throw it away. If it
+halts and returns $x$, return the length of that Turing Machine which must be the complexity of $x$!</p>
 
 <p>The proof uses a similar trick as in the classical proof of the halting
 problem of simultaneously viewing Turing Machines as both programs and
