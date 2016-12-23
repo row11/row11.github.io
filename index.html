@@ -120,8 +120,8 @@ function $M_1()$
    print(x)
 </pre>
 
-<p>It might be for some strings. But consider the string $00\cdots01$, where
-the $\cdots$ represents one million zeros. Then the program above will have
+<p>It might be for some integers. But consider the integer $11\cdots10$, where
+the $\cdots$ represents one million ones. Then the program above will have
 length $> 10^6$ characters, while</p>
 
 <script type="text/javascript">
@@ -132,8 +132,8 @@ length $> 10^6$ characters, while</p>
 <pre id="m2">
 function $M_2()$
    for $i=0$ until $10^6$
-       print(0)
-   print(1)
+       print(1)
+   print(0)
 </pre>
 <p>will have far fewer. The point is there might be all kinds of super
 efficient ways to encode patterns in the string.</p>
@@ -188,7 +188,7 @@ true of our choice of $c$.</li>
 <li>What if it is not possible to find $c$ such that $|M_c| < c$? It is true that
 $M_c$ needs to encode $c$, and so $|M_c|$ must grow with $c$. However if we do
 the obvious thing and encode $c$ in binary within $M_c$, then $|M_c|$ grows
-as $O(\log c)$, while $c$ is $\Omega(c)$ (duh). Thus there is definitely such
+as $\mathcal{O}(\log c)$, while $c$ is $\Omega(c)$ (duh). Thus there is definitely such
 a $c$.</li>
 </ol>
 </p>
