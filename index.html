@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE html>
 <html>
+
 <head>
-<title>Mathedemo</title>
+<title>Kolmogorov</title>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
@@ -10,84 +11,288 @@
 </script>
 </head>
 
-<body>
 
-  	As my inaugural blog post, I thought I would write about one of my favorite proofs that I learned about while playing the Wikipedia game a few years ago. It relates to a number of different areas (complexity, logic, information theory), and uses a really elegant and simple argument.
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-pseudocode/dist/js/jquery-pseudocode.js"></script>
+
+<link rel="stylesheet" href="bower_components/jquery-pseudocode/dist/css/jquery-pseudocode.css" type="text/css"/>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32">
+  <h1><b>ALGO DOWN MOSES</b></h1>
+  <p>Roie's blog </p>
+</header>
+
+<!-- Grid -->
+<div class="w3-row">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="broccoli.jpg" style="width:100%">
+    <div class="w3-container w3-padding-8">
+      <h3><b>Incomputability of Kolmogorov Complexity</b></h3>
+      <span class="w3-opacity">December 22, 2016</span>
+    </div>
+
+    <div class="w3-container">
+<p>As my inaugural blog post, I thought I would write about one of my
+favorite proofs that I learned about while playing the Wikipedia game a
+few years ago. It relates to a number of different areas (complexity,
+logic, information theory), and uses a really elegant and simple argument.
+</p>
+
+<h5>(Long winded) Introduction </h3>
+<p>For centuries, mathematics had been an art form. Titans like Euclid,
+Newton, Gauss had laid down beautiful theories that seemed to capture
+the basic laws governing the universe. Yet somehow there was never a
+very clear notion of what was true and what was false: you had to kind
+of feel it. Finally, at the turn of the 20<sup>th</sup> century, math
+was starting to congeal into one agreed upon and axiomatized framework.
+To make sure this was for real for real for real, a mathematician by
+the name of David Hilbert put forth a proposal to his peers:
+&quot;Let's just prove everything&quot; (paraphrase). In particular,
+he wanted to prove both that basic arithmetic could capture all of the
+math that had been developed and that this theory was consistent with
+itself. This came to be known as Hilbert's program.</p>
+
+<p>Unfortunately, it was not meant to be. In 1931, Kurt (G&ouml;d)el smote
+their tower of Babel. In one fell swoop he proved that any attempt to
+axiomatize arithmetic truth was doomed to fail: there are always
+statements that a consistent formal system that can express arithmetic
+cannot prove. Furthermore, a consistent system cannot prove its own
+consistency. This is arguably one of the biggest and most amazing
+mathematical discoveries of all time: it sent a tidal wave through
+the mathematics and philosophy communities. With his proof, G&ouml;del
+definitively established that the universe would forever be a fickle
+beast that could not be pinned down in any one system of logic;
+mathematics would forever be an art form.</p>
+
+<p>Around the same time as G&ouml;del, Alan Turing (of <i>The Imitation
+Game</i> fame) independently proved an analog of G&ouml;del's first
+incompleteness theorem in the language of computer science. He showed
+that there exist well defined functions from integers to integers that
+no program (or formally any model of computation that can be simulated
+on a Turing Machine) can possibly compute. The famous function that
+Turing gave is that of the halting problem: this is the function that
+is 1 if the input string is a valid encoding of a program that
+terminates in a finite amount of time, and 0 otherwise. In
+introductory computer science theory courses, this is the canonical
+example used to demonstrate the existence of incomputable functions.
+</p>
+
+<h5>Kolmogorov Complexity</h3>
+
+<p>Today I would like to present an alternative example of an incomputable
+function. Given an integer as well as an agreed upon programming language,
+what is the shortest program that takes no input and outputs the string
+after a finite number of steps? This quantity is known as the Kolmogorov
+Complexity of the integer, and is studied in great depth in the field of
+information theory as a measure of how much information the integer
+contains. We denote the Kolmogorov Complexity of integer $x$ as $K(x)$.</p>
+
+<p>One might think this is obviously an obvious calculation.
+Isn't this always the shortest program?</p>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#m1').pseudocode();
+    });
+</script>
+<pre id="m1">
+function $M_1()$
+print(x)
+</pre>
+
+<p>It might be for some strings. But consider the string $00\cdots01$, where
+the $\cdots$ represents one million zeros. Then the program above will have
+length $> 10^6$ characters, while</p>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#m2').pseudocode();
+  });
+</script>
+<pre id="m2">
+function $M_2()$
+   for $i=0$ until $10^6$
+       print(0)
+   print(1)
+</pre>
+<p>will have far fewer. The point is there might be all kinds of super
+efficient ways to encode patterns in the string.</p>
+
+<h5>Proof</h5>
+
+<p>Let's walk through the proof that this function cannot be computed.
+Intuitively, the argument is very similar to a fun word puzzle called
+the Berry Paradox. It goes like this:
+<blockquote><i>&quot;What is the smallest number that cannot be described in fewer than 100
+words?&quot;</i></blockquote>
+Think about whether this statement makes sense. If there were such an
+integer, we could describe it as the &quot;smallest number that cannot be
+described in fewer than 100 words&quot;, which is a description with fewer
+than 100 words.</p>
+
+<p>Now let's try to reproduce the paradox more formally. Suppose for the sake of
+contradiction that there existed a program called $M_K$ that could compute
+$K(x)$ for any input $x$. We now construct another program $M_c$
+(parametrized by some number $c$) that uses $M_K$ as a subroutine:</p>
+<script type="text/javascript">
+ $(document).ready(function() {
+     $('#mc').pseudocode();
+ });
+</script>
+<pre id="mc">
+function $M_c()$
+   for $i=0$ until $\infty$
+       if $M_k(i) > c$
+           print(i)
+           return
+</pre>
+
+<p>That's it, we are done! How so you might ask? The first step is to notice
+that $M_c$ is a program with no arguments that outputs $x$ (for some integer
+$x$), which has to be longer than than the shortest possible program that
+meets that description. So the length of $M_c$, or $|M_c|$, must be an upper
+bound on $K(x)$, i.e. $|M_c| > K(x)$. We also know that $x$ respected the
+condition of the &quot;if&quot; statement on line 4, so $K(x) > c$. See where
+this is going? All we have to do is fix a constant $c$ big enough that
+$|M_c| < c$ and we have a contradiction!</p>
+
+<p>There are two technical snags that worrywarts might bring up. Let us address them:
+<ol>
+<li>What if there does not exist an integer $x$ such that $K(x) > c$? Not an
+issue. For any bound $A$, there are a finite number of programs with length
+$\leq A$, these output a finite set $S$ of things. Since there are an infinite
+number of integers, any integer $t$ outside of $S$ must have $K(t) > A$ since
+$t$ was not output by any program of length $\leq A$. In particular this is
+true of our choice of $c$.</li>
+<li>What if it is not possible to find $c$ such that $M_c < c$? It is true that
+$M_c$ needs to encode $c$, and so $|M_c|$ must grow with $c$. However if we do
+the obvious thing and encode $c$ in binary within $M_c$, then $|M_c|$ grows
+as $O(\log c)$, while $c$ is $\Omega(c)$ (duh). Thus there is definitely such
+a $c$.</li>
+</ol>
+</p>
+<h5>Implications and Discussion</h5>
 
 
-  \section*{(Long winded) Introduction}
-  For centuries, mathematics had been an art form. Titans like Euclid, Newton, Gauss had laid down beautiful theories that seemed to capture the basic laws governing the universe. Yet somehow there was never a very clear notion of what was true and what was false: you had to kind of feel it. Finally, at the turn of the $20^{\text{th}}$ century, math was starting to congeal into one agreed upon and axiomatized framework. To make sure this was for real for real for real, a mathematician by the name of David Hilbert put forth a proposal to his peers: “Let's just prove everything” (paraphrase). In particular, he wanted to prove both that basic arithmetic could capture all of the math that had been developed and that this theory was consistent with itself. This came to be known as Hilbert's program.
+<p>We have done some good work. We just proved that the optimal compression
+scheme for an arbitrary string cannot be determined in general (even though it
+exists and is well defined). This also goes by the full employment theorem,
+because it guarantees there will never be a one size fits all solution to
+compression: in other   words there will always be work left for computer
+scientists to do.</p>
 
-  Unfortunately, it was not meant to be. In 1931, Kurt (Göd)el smote their tower of Babel. In one fell swoop he proved that any attempt to axiomatize arithmetic truth was doomed to fail: there are always statements that a consistent formal system that can express arithmetic cannot prove. Furthermore, a consistent system cannot prove its own consistency. This is arguably one of the biggest and most amazing mathematical discoveries of all time: it sent a tidal wave through the mathematics and philosophy communities. With his proof, Gödel definitively established that the universe would forever be a fickle beast that could not be pinned down in any one system of logic; mathematics would forever be an art form.
+<p>We can also derive the proof that the halting problem is incomputable as an
+easy corollary. If we could solve the halting problem, we can compute
+Kolmogorov complexity. Given an integer $x$, simply examine every Turing
+machine in lexicographical order. If it does not halt, throw it away. If it
+does and it returns $x$, return the length of that Turing Machine.</p>
 
-  Around the same time as Gödel, Alan Turing (of The Imitation Game fame) independently proved an analog of Gödel's first incompleteness theorem in the language of computer science. He showed that there exist well defined functions from integers to integers that no program (or formally any model of computation that can be simulated on a Turing Machine) can possibly compute. The famous function that Turing gave is that of the halting problem: this is the function that is 1 if the input string is a valid encoding of a program that terminates in a finite amount of time, and 0 otherwise. In introductory computer science theory courses, this is the canonical example used to demonstrate the existence of incomputable functions.
+<p>The proof uses a similar trick as in the classical proof of the halting
+problem of simultaneously viewing Turing Machines as both programs and
+integers. I wonder if one can formalize the statement that this dual view is
+an essential ingredient in proving incomputability. Is it true that all models
+that cannot be encoded as inputs to the model (as can Turing Machines on a
+Universal Turing Machine), do not suffer from this problem?</p>
 
-  \section*{Kolmogorov Complexity}
+</div>
+</div>
+<hr>
 
-  Today I would like to present an alternative example of an incomputable function. Given an integer as well as an agreed upon programming language, what is the shortest program that takes no input and outputs the string after a finite number of steps? This quantity is known as the Kolmogorov Complexity of the integer, and is studied in great depth in the field of information theory as a measure of how much information the integer contains. We denote the Kolmogorov Complexity of integer $x$ as $K(x)$.
+<!-- END BLOG ENTRIES -->
+</div>
 
-  One might think this is obviously an obvious calculation. Isn't this always the shortest program?
-  \begin{algorithm}[H]
-  \begin{algorithmic}
-  \Function{$M_1$}{}
-      \State print(x)
-  \EndFunction
-  \end{algorithmic}
-  \end{algorithm}
-  \noindent It might be for some strings. But consider the string 00...01, where the ... represents one million zeros. Then the program above will have length $> 10^6$ characters, while
-  \begin{algorithm}[H]
-  \begin{algorithmic}
-  \Function{$M_2$}{}
-  \For{$i=0$ until $10^6$}
-      \State print($0$)
-  \EndFor
-  \State print($1$)
-  \EndFunction
-  \end{algorithmic}
-  \end{algorithm}
-  \noindent will have far fewer. The point is there might be all kinds of super efficient ways to encode patterns in the string.
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card-2 w3-margin w3-margin-top">
+  <img src="romanesco.jpg" style="width:100%">
+    <div class="w3-container w3-white">
+      <h4><b>Roie Levin</b></h4>
+      <p>CS Theory for the masses, plus some sweet
+        high-res veggies.</p>
+    </div>
+  </div><hr>
 
-  \section*{Proof}
+  <!-- Posts -->
+  <!-- <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Popular Posts</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+        <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Lorem</span><br>
+        <span>Sed mattis nunc</span>
+      </li>
+      <li class="w3-padding-16">
+        <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Ipsum</span><br>
+        <span>Praes tinci sed</span>
+      </li>
+      <li class="w3-padding-16">
+        <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Dorum</span><br>
+        <span>Ultricies congue</span>
+      </li>
+      <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+        <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Mingsum</span><br>
+        <span>Lorem ipsum dipsum</span>
+      </li>
+    </ul>
+  </div>
+  <hr> -->
 
-  Let's walk through the proof that this function cannot be computed. Intuitively, the argument is very similar to a fun word puzzle called the Berry Paradox. It goes like this:
+  <!-- Labels / tags -->
+  <!-- <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+    </p>
+    </div>
+  </div> -->
 
-  “What is the smallest number that cannot be described in fewer than 100 words?”
+<!-- END Introduction Menu -->
+</div>
 
-  \noindent Think about whether this statement makes sense. If there were such an integer, we could describe it as the “smallest number that cannot be described in fewer than 100 words”, which is a description with fewer than 100 words.
+<!-- END GRID -->
+</div><br>
 
-  Now let's try to reproduce the paradox more formally. Suppose for the sake of contradiction that there existed a program called $M_K$ that could compute $K(x)$ for any input $x$. We now construct an other program $M_c$ (parametrized by some number $c$) that uses $M_K$ as a subroutine:
+<!-- END w3-content -->
+</div>
 
-  \begin{algorithm}[H]
-  \begin{algorithmic}
-  \Function{$M_c$}{}
-  \For{$i=0$ until $\infty$}
-      \State print($0$)
-  \If{$M_k(i) > c$}
-  \State print($i$)
-  \State \Return
-  \EndIf
-  \EndFor
-  \State print($1$)
-  \EndFunction
-  \end{algorithmic}
-  \end{algorithm}
-
-  That's it, we are done! How so you might ask? The first step is to notice that $M_c$ is a program with no arguments that outputs $x$ (for some integer $x$), which has to be longer than than the shortest possible program that meets that description. So the length of $M_c$, or $|M_c|$, must be an upper bound on $K(x)$, i.e. $|M_c| > K(x)$. We also know that $x$ respected the condition of the “if” statement on line 4, so $K(x) > c$. See where this is going? All we have to do is fix a constant $c$ big enough that $M_c < c$ and we have a contradiction!
-
-  There are two technical snags that worrywarts might bring up. Let us address them:
-  \begin{enumerate}
-      \item What if there does not exist an integer $x$ such that $K(x) > c$? Not an issue. For any bound $A$, there are a finite number of programs with length $\leq A$, these output a finite set $S$ of things. Since there are an infinite number of integers, any integer $t$ outside of $S$ must have $K(t) > A$ since $t$ was not output by any program of length $\leq A$. In particular this is true of our choice of $c$.
-      \item What if it is not possible to find $c$ such that $M_c < c$? It is true that $M_c$ needs to encode $c$, and so $|M_c|$ must grow with $c$. However if we do the obvious thing and encode $c$ in binary within $M_c$, then $|M_c|$ grows as $O(\log c)$, while $c$ is $\Omega(c)$ (duh). Thus there is definitely such a $c$.
-  \end{enumerate}
-
-  \section*{Implications and Discussion}
-
-  We have done some good work. We just proved that the optimal compression scheme for an arbitrary string cannot be determined in general, even though it exists. This also goes by the full employment theorem, because it guarantees there will never be a one size fits all solution to compression: in other words there will always be work left for computer scientists to do.
-
-  We can also derive the proof that the halting problem is incomputable as an easy corollary. If we could solve the halting problem, we can compute Kolmogorov complexity. Given an integer $x$, simply examine every Turing machine in lexicographical order. If it does not halt, throw it away. If it does and it returns $x$, return the length of that Turing Machine.
-
-  The proof uses a similar trick as in the classical proof of the halting problem of simultaneously viewing Turing Machines as both programs and integers. I wonder if one can formalize the statement that this dual view is an essential ingredient in proving incomputability. Is it true that all models that cannot be encoded as inputs to the model (as can Turing Machines on a Universal Turing Machine), do not suffer from this problem?
-
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <button class="w3-btn w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+  <button class="w3-btn w3-padding-large w3-margin-bottom">Next »</button>
+  <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
 
 </body>
 </html>

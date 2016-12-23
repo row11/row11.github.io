@@ -1,0 +1,20 @@
+{
+  "name": "row11.github.io",
+  "homepage": "https://github.com/row11/row11.github.io",
+  "authors": [
+    "Roie Levin <roiel@allenai.org>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-pseudocode": "davidstutz/jquery-pseudocode"
+  }
+}

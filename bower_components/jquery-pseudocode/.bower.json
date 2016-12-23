@@ -1,0 +1,39 @@
+{
+  "name": "jquery-pseudocode",
+  "description": "jQuery plugin for LaTeX style algorithms/pseudocode.",
+  "homepage": "http://davidstutz.github.io/jquery-pseudocode/",
+  "keywords": [
+    "js",
+    "css",
+    "less",
+    "jquery"
+  ],
+  "main": [
+    "./dist/js/jquery-pseudocode.js",
+    "./dist/css/jquery-pseudocode.css",
+    "./dist/less/jquery-pseudocode.less"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.11.0",
+    "bootstrap": ">= 2.3.2"
+  },
+  "ignore": [
+    "docs/.*",
+    "tests/.*",
+    "*.html",
+    "*.git*",
+    "*.md",
+    "*.png",
+    "*.php"
+  ],
+  "_release": "4382cf292d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4382cf292ddf490fcbef4fcae938bb26f1aa37a5"
+  },
+  "_source": "https://github.com/davidstutz/jquery-pseudocode.git",
+  "_target": "*",
+  "_originalSource": "davidstutz/jquery-pseudocode",
+  "_direct": true
+}
