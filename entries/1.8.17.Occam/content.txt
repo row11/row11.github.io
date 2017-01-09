@@ -44,7 +44,7 @@ something if I am indistinguishable from someone who definitely knows the concep
 
 <p>Great. So how do we actually measure how good a learner is? To this end,
 Leslie Valiant introduced a framework in the early 80s called
-<a href="http://axon.cs.byu.edu/~martinez/classes/678/Papers/Valiant_Learnable.pdf">
+<a href="https://people.mpi-inf.mpg.de/~mehlhorn/SeminarEvolvability/ValiantLearnable.pdf">
 Probably Approximately Correct Learning </a> (or PAC Learning). Yes, that is the
 actual name. Let's explain a few definitions from this paradigm.
 </p>
