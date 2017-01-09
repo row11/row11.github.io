@@ -11,11 +11,15 @@ two explanations for an observation, the simpler one will likely be better. </p>
   claim that &quot;simpler&quot; is in the eye of the beholder. After all, who
   is to really say that the theory of relativity is a simpler model of
   black holes than the explanation that there are rounding errors
-  in Elon Musk's alien simulation? </p>
+  in <a href="http://www.theverge.com/2016/6/2/11837874/elon-musk-says-odds-living-in-simulation">
+  Elon Musk's alien simulation</a>? </p>
 
 <p>Pish Posh. Today I will present the most convincing argument for Occam's
-razor that I have seen. This is a classical result in learning theory first
-proved in [1]. I am not claiming absolute certainty that Occam's razor
+razor that I have seen. This is a
+<a href="http://www.cse.buffalo.edu/~hungngo/classes/2008/694/papers/occam.pdf">
+classical result in learning theory</a> first proved by
+Anselm Blumer, Andrzej Ehrenfeucht, David Haussler, and Manfred K. Warmuth.
+I am not claiming absolute certainty that Occam's razor
 is the be all end all in how to know what we know and what we don't know. But
 the theorem I will prove uses math, so the conclusions are pretty much not up
 for debate insofar as the assumptions make sense.</p>
@@ -40,7 +44,8 @@ something if I am indistinguishable from someone who definitely knows the concep
 
 <p>Great. So how do we actually measure how good a learner is? To this end,
 Leslie Valiant introduced a framework in the early 80s called
-Probably Approximately Correct Learning (or PAC Learning). Yes, that is the
+<a href="http://axon.cs.byu.edu/~martinez/classes/678/Papers/Valiant_Learnable.pdf">
+Probably Approximately Correct Learning </a> (or PAC Learning). Yes, that is the
 actual name. Let's explain a few definitions from this paradigm.
 </p>
 <p>Suppose we are learning what a cat is. There is some descriptive space in
@@ -212,20 +217,25 @@ which is exactly what we had to prove.
 <h3>Implications and Discussion</h3>
 
 <p>
-We have shown that models that explain observed phenomena and can be summarized
-concisely &quot;understand&quot; nature. I personally think that captures a
+We have shown the amazing fact that models that explain observed phenomena and \
+can be summarized concisely &quot;understand&quot; nature. I personally think that captures a
 good chunk of the intuition in Occam's original razor, but I guess it's up to you.
 </p>
 
 <p> As I mentioned in the introduction this is a one directional implication.
 There has been some cool work on showing a partial converse. Under fairly
-general assumptions, the existence of a PAC algorithm implies the existence
-of an Occam algorithm [2].
+general assumptions,
+<a href="https://www.semanticscholar.org/paper/On-the-Necessity-of-Occam-Algorithms-Board-Pitt/87167c632da27ebde6da65770bda2fa32b029f0b">
+the existence of a PAC algorithm implies the existence
+of an Occam algorithm</a>.
 </p>
 
 <p>
-In his 1998 survey paper titles &quot;Occam's Two Razors: The Sharp and the Blunt&quot;
-[3] Pedro Domingos argues that Occam's razor is often abused in model selection.
+
+In his 1998 survey paper
+<a href="https://www.semanticscholar.org/paper/Occam-s-Two-Razors-The-Sharp-and-the-Blunt-Domingos/d7845d20f5245218217404d3fe8fc4c5fd62c7ea">
+&quot;Occam's Two Razors: The Sharp and the Blunt&quot;</a>
+Pedro Domingos argues that Occam's razor is often abused in model selection.
 Specifically he criticizes this PAC theory theorem, saying that "the only
 connection of this result to Occam's razor is provided by the information-theoretic
 notion that, if a set of models is small, its members can be distinguished by
@@ -233,17 +243,6 @@ short codes". As far as I can tell, Domingos is only aware of the cardinality
 version of the proof; the objection is resolved by the second argument.
 </p>
 
-<p>For further reading I highly recommend the book by Kearns and Vazirani [4], from which
-the above proof is taken.</p>
-
-<h3>References</h3>
-<ol>
-<li><a href="http://www.cse.buffalo.edu/~hungngo/classes/2008/694/papers/occam.pdf">Occam's Razor</a>,
-by Anselm Blumer, Andrzej Ehrenfeucht, David Haussler, Manfred K. Warmuth</li>
-<li><a href="https://www.semanticscholar.org/paper/On-the-Necessity-of-Occam-Algorithms-Board-Pitt/87167c632da27ebde6da65770bda2fa32b029f0b">
-On the necessity of Occam algorithms</a> by Raymond A. Board and Leonard Pitt</li>
-<li><a href="https://www.semanticscholar.org/paper/Occam-s-Two-Razors-The-Sharp-and-the-Blunt-Domingos/d7845d20f5245218217404d3fe8fc4c5fd62c7ea">
-Occam's Two Razors: The Sharp and the Blunt</a> by Pedro Domingos</li>
-<li><a href="https://www.amazon.com/Introduction-Computational-Learning-Theory-Press/dp/0262111934">
-An Introduction to Computational Learning Theory</a> by Michael Kearns and Umesh Vazirani</li>
-</ol>
+<p>For further reading I highly recommend
+<a href="https://www.amazon.com/Introduction-Computational-Learning-Theory-Press/dp/0262111934">
+the book by Kearns and Vazirani</a>, from which the above proof is taken.</p>
