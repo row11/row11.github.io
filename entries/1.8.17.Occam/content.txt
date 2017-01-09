@@ -217,7 +217,7 @@ which is exactly what we had to prove.
 <h3>Implications and Discussion</h3>
 
 <p>
-We have shown the amazing fact that models that explain observed phenomena and \
+We have shown the amazing fact that models that explain observed phenomena and
 can be summarized concisely &quot;understand&quot; nature. I personally think that captures a
 good chunk of the intuition in Occam's original razor, but I guess it's up to you.
 </p>
