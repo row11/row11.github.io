@@ -4,7 +4,7 @@ few years ago. It relates to a number of different areas (complexity,
 logic, information theory), and uses a really elegant and simple argument.
 </p>
 
-<h5>(Long winded) Introduction </h3>
+<h3>(Long winded) Introduction </h3>
 <p>For centuries, mathematics had been an art form. Titans like Euclid,
 Newton, Gauss had laid down beautiful theories that seemed to capture
 the basic laws governing the universe. Yet somehow there was never a
@@ -43,7 +43,7 @@ introductory computer science theory courses, this is the canonical
 example used to demonstrate the existence of incomputable functions.
 </p>
 
-<h5>Kolmogorov Complexity</h3>
+<h3>Kolmogorov Complexity</h3>
 
 <p>Today I would like to present an alternative example of an incomputable
 function. Given an integer as well as an agreed upon programming language,
@@ -84,7 +84,7 @@ function $M_2()$
 <p>will have far fewer. The point is there might be all kinds of super
 efficient ways to encode patterns in the string.</p>
 
-<h5>Proof</h5>
+<h3>Proof</h3>
 
 <p>Let's walk through the proof that this function cannot be computed.
 Intuitively, the argument is very similar to a fun word puzzle called
@@ -115,13 +115,14 @@ function $M_c()$
 </pre>
 
 <p>That's it, we are done! How so you might ask? The first step is to notice
-that $M_c$ is a program with no arguments that outputs $x$ (for some integer
-$x$), which has to be longer than than the shortest possible program that
-meets that description. So the length of $M_c$, or $|M_c|$, must be an upper
-bound on $K(x)$, i.e. $|M_c| > K(x)$. We also know that $x$ respected the
-condition of the &quot;if&quot; statement on line 3, so $K(x) > c$. See where
-this is going? All we have to do is fix a constant $c$ big enough that
-$|M_c| < c$ and we have a contradiction!</p>
+that $M_c$ is exactly the Berry Paradox with $100$ replaced by $c$. $M_c$ is a
+program with no arguments that outputs $x$ (for some integer
+$x$). Therefore it has to be longer than the shortest <i>possible</i> program
+that takes no arguments and outputs $x$. So the length of $M_c$, or $|M_c|$,
+must be an upper bound on $K(x)$, i.e. $|M_c| > K(x)$. We also know that $x$
+respected the condition of the &quot;if&quot; statement on line 3, so
+$K(x) > c$. See where this is going? All we have to do is fix a constant $c$
+big enough that $|M_c| < c$ and we have a contradiction!</p>
 
 <p>There are two technical snags that worrywarts might bring up. Let us address them:
 <ol>
@@ -138,7 +139,7 @@ as $\mathcal{O}(\log c)$, while $c$ is $\Omega(c)$ (duh). Thus there is definite
 a $c$.</li>
 </ol>
 </p>
-<h5>Implications and Discussion</h5>
+<h3>Implications and Discussion</h3>
 
 
 <p>We have done some good work. We just proved that the optimal compression

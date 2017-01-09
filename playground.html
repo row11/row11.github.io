@@ -50,169 +50,24 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
 
     <div class="w3-container">
-<p>As my inaugural blog post, I thought I would write about one of my
-favorite proofs that I discovered while playing the Wikipedia game a
-few years ago. It relates to a number of different areas (complexity,
-logic, information theory), and uses a really elegant and simple argument.
+
+<blockquote><i>
+  &quot;Entities must not be multiplied beyond necessity&quot;
+</i></blockquote>
+<p> This is not a moratorium on 8<sup>th</sup> grade dance parties. This is Occam's
+famous razor: the principle that when deciding between two explanations for an
+observed scientific phenomenon, the better
+
+<p>
+  Those who shave with Occam's razor often cite it as the epistimic
+  justification for science.
 </p>
 
 <h5>(Long winded) Introduction </h3>
-<p>For centuries, mathematics had been an art form. Titans like Euclid,
-Newton, Gauss had laid down beautiful theories that seemed to capture
-the basic laws governing the universe. Yet somehow there was never a
-very clear notion of what was true and what was false: you had to kind
-of feel it. Finally, at the turn of the 20<sup>th</sup> century, math
-was starting to congeal into one agreed upon and axiomatized framework.
-To make sure this was for real for real for real, a mathematician by
-the name of David Hilbert put forth a proposal to his peers:
-&quot;Let's just prove everything&quot; (paraphrase). In particular,
-he wanted to prove both that basic arithmetic could capture all of the
-math that had been developed and that this theory was consistent with
-itself. This came to be known as Hilbert's program.</p>
-
-<p>Unfortunately, it was not meant to be. In 1931, Kurt (G&ouml;d)el smote
-their tower of Babel. In one fell swoop he proved that any attempt to
-axiomatize arithmetic truth was doomed to fail: there are always
-statements that a consistent formal system that can express arithmetic
-cannot prove. Furthermore, a consistent system cannot prove its own
-consistency. This is arguably one of the biggest and most amazing
-mathematical discoveries of all time: it sent a tidal wave through
-the mathematics and philosophy communities. With his proof, G&ouml;del
-definitively established that the universe would forever be a fickle
-beast that could not be pinned down in any one system of logic;
-mathematics would forever be an art form.</p>
-
-<p>Around the same time as G&ouml;del, Alan Turing (that guy from <i>The Imitation
-Game</i>) independently proved an analog of G&ouml;del's first
-incompleteness theorem in the language of computer science. He showed
-that there exist well defined functions from integers to integers that
-no program (or formally any model of computation that can be simulated
-on a Turing Machine) can possibly compute. The famous function that
-Turing gave is that of the halting problem: this is the function that
-is 1 if the input integer is a valid encoding of a program that
-terminates in a finite amount of time, and 0 otherwise. In
-introductory computer science theory courses, this is the canonical
-example used to demonstrate the existence of incomputable functions.
-</p>
-
-<h5>Kolmogorov Complexity</h3>
-
-<p>Today I would like to present an alternative example of an incomputable
-function. Given an integer as well as an agreed upon programming language,
-what is the shortest program that takes no input and prints the integer
-after a finite number of steps? This quantity is known as the Kolmogorov
-Complexity of the integer, and is studied in great depth in the field of
-information theory as a measure of how much information the integer
-contains. We denote the Kolmogorov Complexity of integer $x$ as $K(x)$.</p>
-
-<p>One might think this is obviously an obvious calculation.
-Isn't this always the shortest program?</p>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#m1').pseudocode();
-    });
-</script>
-<pre id="m1">
-function $M_1()$
-   print(x)
-</pre>
-
-<p>It might be for some integers. But consider the integer $11\cdots10$, where
-the $\cdots$ represents one million ones. Then the program above will have
-length $> 10^6$ characters, while</p>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('#m2').pseudocode();
-  });
-</script>
-<pre id="m2">
-function $M_2()$
-   for $i=0$ until $10^6$
-       print(1)
-   print(0)
-</pre>
-<p>will have far fewer. The point is there might be all kinds of super
-efficient ways to encode patterns in the string.</p>
-
-<h5>Proof</h5>
-
-<p>Let's walk through the proof that this function cannot be computed.
-Intuitively, the argument is very similar to a fun word puzzle called
-the Berry Paradox. It goes like this:
-<blockquote><i>&quot;What is the smallest number that cannot be described in fewer than 100
-words?&quot;</i></blockquote>
-Think about whether this statement makes sense. If there were such an
-integer, we could describe it as the &quot;smallest number that cannot be
-described in fewer than 100 words&quot;, which is a description with fewer
-than 100 words.</p>
-
-<p>Now let's try to reproduce the paradox more formally. Suppose for the sake of
-contradiction that there existed a program called $M_K$ that could compute
-$K(x)$ (that's the length of shortest possible description of $x$, remember!) for
-any input $x$. We now construct another program $M_c$ (parametrized by some
-number $c$) that uses $M_K$ as a subroutine:</p>
-<script type="text/javascript">
- $(document).ready(function() {
-     $('#mc').pseudocode();
- });
-</script>
-<pre id="mc">
-function $M_c()$
-   for $i=0$ until $\infty$
-       if $M_k(i) > c$
-           print(i)
-           return
-</pre>
-
-<p>That's it, we are done! How so you might ask? The first step is to notice
-that $M_c$ is a program with no arguments that outputs $x$ (for some integer
-$x$), which has to be longer than than the shortest possible program that
-meets that description. So the length of $M_c$, or $|M_c|$, must be an upper
-bound on $K(x)$, i.e. $|M_c| > K(x)$. We also know that $x$ respected the
-condition of the &quot;if&quot; statement on line 3, so $K(x) > c$. See where
-this is going? All we have to do is fix a constant $c$ big enough that
-$|M_c| < c$ and we have a contradiction!</p>
-
-<p>There are two technical snags that worrywarts might bring up. Let us address them:
-<ol>
-<li>What if there does not exist an integer $x$ such that $K(x) > c$? Not an
-issue. For any bound $A$, there are a finite number of programs with length
-$\leq A$, these output a finite set $S$ of things. Since there are an infinite
-number of integers, any integer $t$ outside of $S$ must have $K(t) > A$ since
-$t$ was not output by any program of length $\leq A$. In particular this is
-true of our choice of $c$.</li>
-<li>What if it is not possible to find $c$ such that $|M_c| < c$? It is true that
-$M_c$ needs to encode $c$, and so $|M_c|$ must grow with $c$. However if we do
-the obvious thing and encode $c$ in binary within $M_c$, then $|M_c|$ grows
-as $\mathcal{O}(\log c)$, while $c$ is $\Omega(c)$ (duh). Thus there is definitely such
-a $c$.</li>
-</ol>
-</p>
+<h5>PAC Learning</h3>
+<h5>Occam Learning</h5>
 <h5>Implications and Discussion</h5>
-
-
-<p>We have done some good work. We just proved that the optimal compression
-scheme for an arbitrary string cannot be determined in general (even though it
-exists and is well defined). This also goes by the name Full Employment Theorem,
-because it guarantees there will never be a one size fits all solution to
-compression: in other words there will always be work left for computer
-scientists to do.</p>
-
-<p>We can also derive the proof that the halting problem is incomputable as an
-easy corollary. If we could solve the halting problem, we can compute
-Kolmogorov complexity. Given an integer $x$, simply examine every Turing
-machine in lexicographical order. If it does not halt or return $x$, throw it away. If it
-halts and returns $x$, return the length of that Turing Machine which must be the complexity of $x$!</p>
-
-<p>The proof uses a similar trick as in the classical proof of the halting
-problem of simultaneously viewing Turing Machines as both programs and
-integers. I wonder if one can formalize the statement that this dual view is
-an essential ingredient in proving incomputability. Is it true that all models
-that cannot be encoded as inputs to the model (as can Turing Machines on a
-Universal Turing Machine), do not suffer from this problem?</p>
-
+  <p>It is a sufficient, but not necessary condition for a model to have predictive power.</p>
 </div>
 </div>
 <hr>

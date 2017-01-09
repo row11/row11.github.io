@@ -18,7 +18,7 @@ for entry in entries:
     result = post_template.replace("!!!title!!!", title).replace("!!!date!!!", date).replace("!!!link!!!", link)
     posts.append((result,dateutil.parser.parse(date)))
 
-posts_string = "\n".join(map(lambda post: post[0], sorted(posts, key=lambda post: post[1])))
+posts_string = "\n".join(map(lambda post: post[0], sorted(posts, key=lambda post: post[1], reverse=True)))
 
 for entry in entries:
     path_prefix = "entries/{0}/".format(entry)

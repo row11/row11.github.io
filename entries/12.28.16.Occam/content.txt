@@ -1,55 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-<title>ALGO DOWN MOSES</title>
-<script type="text/javascript"
-src="bower_components/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-</script>
-<link rel="icon" href="pnp.png">
-</head>
-
-<script src="http://www.google.com/jsapi" type="text/javascript"></script>
-
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/jquery-pseudocode/dist/js/jquery-pseudocode.js"></script>
-
-<link rel="stylesheet" href="bower_components/jquery-pseudocode/dist/css/jquery-pseudocode.css" type="text/css"/>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/w3.css">
-<link rel="stylesheet" href="css/raleway.css">
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-</style>
-<body class="w3-light-grey">
-
-<div class="w3-content" style="max-width:1400px">
-
-<!-- Header -->
-<header class="w3-container w3-center w3-padding-32">
-  <h1><b>ALGO DOWN MOSES</b></h1>
-  <p>Roie's blog </p>
-</header>
-
-<!-- Grid -->
-<div class="w3-row">
-
-<!-- Blog entries -->
-<div class="w3-col l8 s12">
-  <!-- Blog entry -->
-  <div class="w3-card-4 w3-margin w3-white">
-    <img src="images/kumato.jpg" style="width:100%">
-    <div class="w3-container w3-padding-8">
-      <h3><b>Occam's Razor in Learning Theory</b></h3>
-      <span class="w3-opacity">December 28, 2016</span>
-    </div>
-
-    <div class="w3-container">
 <h5><blockquote><i>
   &quot;Entities must not be multiplied beyond necessity&quot;
 </i></blockquote></h5>
@@ -102,7 +50,7 @@ which cats live, call it $\mathcal{X}$. Depending on the context in which the
  space containing points that represent cats. </p>
 
 <p style="text-align:center;">
-<img src="images/pac_cats.png" width="75%">
+<img src="../../images/pac_cats.png" width="75%">
 </p>
 
 <p> But we want the definition of learning to capture one's ability to learn,
@@ -112,7 +60,7 @@ talk about a (potentially infinite) family of things to learn called a
 animals.</p>
 
 <p style="text-align:center;">
-<img src="images/pac_animals.png" width="75%">
+<img src="../../images/pac_animals.png" width="75%">
 </p>
 
 <p> Now we are ready for the definition of learner.</p>
@@ -132,14 +80,14 @@ distribution $D$ on $\mathcal{X}$, as well as a binary label $y =
   $\varepsilon$.
 </p>
 <p style="text-align:center;">
-<img src="images/pac_demo1.png" width="75%">
+<img src="../../images/pac_demo1.png" width="75%">
 </p>
 <p>
   We denote the probability mass of the misclassified region as
   $h\Delta c$.
 </p>
 <p style="text-align:center;">
-<img src="images/pac_demo2.png" width="75%">
+<img src="../../images/pac_demo2.png" width="75%">
 </p>
 
 
@@ -299,61 +247,3 @@ Occam's Two Razors: The Sharp and the Blunt</a> by Pedro Domingos</li>
 <li><a href="https://www.amazon.com/Introduction-Computational-Learning-Theory-Press/dp/0262111934">
 An Introduction to Computational Learning Theory</a> by Michael Kearns and Umesh Vazirani</li>
 </ol>
-
-</div>
-</div>
-<hr>
-
-<!-- END BLOG ENTRIES -->
-</div>
-
-<!-- Introduction menu -->
-<div class="w3-col l4">
-  <!-- About Card -->
-    <a href="http://allenai.org/team/roiel/" style="text-decoration: none">
-  <div class="w3-card-2 w3-margin w3-margin-top">
-  <img src="images/romanesco.jpg" style="width:100%">
-    <div class="w3-container w3-white">
-      <h4><b>Roie Levin</b></h4>
-      <p>CS Theory for the masses, plus some sweet
-        high-res veggies.</p>
-    </div>
-    </a>
-  </div><hr>
-
-  <!-- Posts -->
-  <div class="w3-card-2 w3-margin">
-    <div class="w3-container w3-padding">
-      <h4>Posts</h4>
-    </div>
-    <ul class="w3-ul w3-hoverable w3-white">
-      <a href="entries/12.28.16.Occam/index.html" style="text-decoration: none">
-<li class="w3-padding-16">
-  <span class="w3-large">Occam's Razor in Learning Theory</span><br>
-  <span>December 28, 2016</span>
-</li>
-</a>
-
-<a href="entries/12.22.16.Kolmogorov/index.html" style="text-decoration: none">
-<li class="w3-padding-16">
-  <span class="w3-large">Incomputability of Kolmogorov Complexity</span><br>
-  <span>December 22, 2016</span>
-</li>
-</a>
-
-    </ul>
-  </div>
-
-  <hr>
-
-<!-- END Introduction Menu -->
-</div>
-
-<!-- END GRID -->
-</div><br>
-
-<!-- END w3-content -->
-</div>
-
-</body>
-</html>
