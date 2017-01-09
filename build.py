@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-import os, dateutil.parser
+import os, dateutil.parser, datetime
 import xml.etree.ElementTree as ET
 entries = os.listdir("entries")
 front_page = ""
@@ -16,9 +16,10 @@ for entry in entries:
     date = tree.get("date")
     link = path_prefix + "index.html"
     result = post_template.replace("!!!title!!!", title).replace("!!!date!!!", date).replace("!!!link!!!", link)
-    posts.append((result,dateutil.parser.parse(date)))
+    d = dateutil.parser.parse(date)
+    posts.append((result,"{0}-{1}-{2}".format(d.year, d.month, d.day)))
 
-posts_string = "\n".join(map(lambda post: post[0], sorted(posts, key=lambda post: post[1], reverse=True)))
+posts_string = "\n".join(map(lambda post: post[0], sorted(posts, key=lambda post: post[1])))
 
 for entry in entries:
     path_prefix = "entries/{0}/".format(entry)

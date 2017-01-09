@@ -43,262 +43,176 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <div class="w3-col l8 s12">
   <!-- Blog entry -->
   <div class="w3-card-4 w3-margin w3-white">
-    <img src="images/kumato.jpg" style="width:100%">
+    <img src="images/broccoli.jpg" style="width:100%">
     <div class="w3-container w3-padding-8">
-      <h3><b>Occam's Razor in Learning Theory</b></h3>
-      <span class="w3-opacity">December 28, 2016</span>
+      <h3><b>Incomputability of Kolmogorov Complexity</b></h3>
+      <span class="w3-opacity">December 22, 2016</span>
     </div>
 
     <div class="w3-container">
-<h5><blockquote><i>
-  &quot;Entities must not be multiplied beyond necessity&quot;
-</i></blockquote></h5>
-<p> This is not a moratorium on raunchy dancing at an 8<sup>th</sup> grade
-party. This is Occam's famous razor: the principle that when deciding between
-two explanations for an observation, the simpler one will likely be better. </p>
-
-<p> Those who shave with Occam's razor cite it as the epistemic justification for
-  belief and are usually pro-science. Those who don't often criticize it as post
-  hoc rationalization for theories already assumed on faith. They might also
-  claim that &quot;simpler&quot; is in the eye of the beholder. After all, who
-  is to really say that the theory of relativity is a simpler model of
-  black holes than the explanation that there are rounding errors
-  in Elon Musk's alien simulation? </p>
-
-<p>Pish Posh. Today I will present the most convincing argument for Occam's
-razor that I have seen. This is a classical result in learning theory first
-proved in [1]. I am not claiming absolute certainty that Occam's razor
-is the be all end all in how to know what we know and what we don't know. But
-the theorem I will prove uses math, so the conclusions are pretty much not up
-for debate insofar as the assumptions make sense.</p>
-
-  <p>To be fair to cynics, I am only presenting a sufficient but not necessary
-  condition for a model to have predictive power. In other words not all
-  complicated theories are bad, but simple theories are definitely good. </p>
-
-<p> Before we go further, we first need to understand the basics of learning
-theory. </p>
-
-<h3>PAC Learning</h3>
-
-<p>What does it mean to understand something? It is an interesting question with
-many possible answers. Since computer scientists like to use unambiguous
-and actionable definitions, let's say a learner has understood a concept
-if it can correctly identify unseen examples of the concept.
-Note that this is a pragmatic approach that avoids any assumptions about the
-learning mechanism, much in the style of the Turing test: I have learned
-something if I am indistinguishable from someone who definitely knows the concept.
+<p>As my inaugural blog post, I thought I would write about one of my
+favorite proofs that I discovered while playing the Wikipedia game a
+few years ago. It relates to a number of different areas (complexity,
+logic, information theory), and uses a really elegant and simple argument.
 </p>
 
-<p>Great. So how do we actually measure how good a learner is? To this end,
-Leslie Valiant introduced a framework in the early 80s called
-Probably Approximately Correct Learning (or PAC Learning). Yes, that is the
-actual name. Let's explain a few definitions from this paradigm.
-</p>
-<p>Suppose we are learning what a cat is. There is some descriptive space in
-which cats live, call it $\mathcal{X}$. Depending on the context in which the
- cat appears, this could be the space of images, DNA sequences, English
- sentences, etc. The <b>concept</b> of a cat is exactly the subset of the
- space containing points that represent cats. </p>
+<h3>(Long winded) Introduction </h3>
+<p>For centuries, mathematics had been an art form. Titans like Euclid,
+Newton, Gauss had laid down beautiful theories that seemed to capture
+the basic laws governing the universe. Yet somehow there was never a
+very clear notion of what was true and what was false: you had to kind
+of feel it. Finally, at the turn of the 20<sup>th</sup> century, math
+was starting to congeal into one agreed upon and axiomatized framework.
+To make sure this was for real for real for real, a mathematician by
+the name of David Hilbert put forth a proposal to his peers:
+&quot;Let's just prove everything&quot; (paraphrase). In particular,
+he wanted to prove both that basic arithmetic could capture all of the
+math that had been developed and that this theory was consistent with
+itself. This came to be known as Hilbert's program.</p>
 
-<p style="text-align:center;">
-<img src="images/pac_cats.png" width="75%">
-</p>
+<p>Unfortunately, it was not meant to be. In 1931, Kurt (G&ouml;d)el smote
+their tower of Babel. In one fell swoop he proved that any attempt to
+axiomatize arithmetic truth was doomed to fail: there are always
+statements that a consistent formal system that can express arithmetic
+cannot prove. Furthermore, a consistent system cannot prove its own
+consistency. This is arguably one of the biggest and most amazing
+mathematical discoveries of all time: it sent a tidal wave through
+the mathematics and philosophy communities. With his proof, G&ouml;del
+definitively established that the universe would forever be a fickle
+beast that could not be pinned down in any one system of logic;
+mathematics would forever be an art form.</p>
 
-<p> But we want the definition of learning to capture one's ability to learn,
-not just how well one learned a single particular concept. Thus we usually
-talk about a (potentially infinite) family of things to learn called a
-<b>concept class</b>. In our example it might be the concept class of all
-animals.</p>
-
-<p style="text-align:center;">
-<img src="images/pac_animals.png" width="75%">
-</p>
-
-<p> Now we are ready for the definition of learner.</p>
-<p>
-<b><u>Definition:</b></u> For a concept class $\mathscr{C}$, a
-<b><u>PAC learner</b></u> is an algorithm that for any
-$1 > \varepsilon > 0$, any $1 > \delta > 0$ and any
-(unknown) concept $c \in \mathscr{C}$ takes as an argument a black box function
-$O(c, D)$ called the teacher that on every call draws some example $x$ from a
-distribution $D$ on $\mathcal{X}$, as well as a binary label $y =
-  \begin{cases}
-  1 & \text{if $x \in c$} \\
-  0 & \text{if $x \not\in c$}
-  \end{cases}$. With probability greater than $1 - \delta$, the algorithm then
-  outputs a hypothesis $h \subset \mathcal{X}$ for $c$ such that the probability
-  mass with respect to $D$ of elements that are misclassified is less than
-  $\varepsilon$.
-</p>
-<p style="text-align:center;">
-<img src="images/pac_demo1.png" width="75%">
-</p>
-<p>
-  We denote the probability mass of the misclassified region as
-  $h\Delta c$.
-</p>
-<p style="text-align:center;">
-<img src="images/pac_demo2.png" width="75%">
+<p>Around the same time as G&ouml;del, Alan Turing (that guy from <i>The Imitation
+Game</i>) independently proved an analog of G&ouml;del's first
+incompleteness theorem in the language of computer science. He showed
+that there exist well defined functions from integers to integers that
+no program (or formally any model of computation that can be simulated
+on a Turing Machine) can possibly compute. The famous function that
+Turing gave is that of the halting problem: this is the function that
+is 1 if the input integer is a valid encoding of a program that
+terminates in a finite amount of time, and 0 otherwise. In
+introductory computer science theory courses, this is the canonical
+example used to demonstrate the existence of incomputable functions.
 </p>
 
+<h3>Kolmogorov Complexity</h3>
 
-<p>
-The algorithm is allowed to assume that the distribution
-at training time and test time are the same. If this were not the case, we could
-easily trick the algorithm into learning an incomplete version of the concept.
-This would be like teaching a child arithmetic by only giving it examples of addition and
-then suddenly giving it a test only on subtraction.</p>
-<p>On the other hand, we emphasize that the algorithm needs to work for any
-distribution $D$ from which examples are drawn. Some distributions might be
-easier to learn than others, this guarantees that the algorithm is robust to all
-of them.
+<p>Today I would like to present an alternative example of an incomputable
+function. Given an integer as well as an agreed upon programming language,
+what is the shortest program that takes no input and prints the integer
+after a finite number of steps? This quantity is known as the Kolmogorov
+Complexity of the integer, and is studied in great depth in the field of
+information theory as a measure of how much information the integer
+contains. We denote the Kolmogorov Complexity of integer $x$ as $K(x)$.</p>
+
+<p>One might think this is obviously an obvious calculation.
+Isn't this always the shortest program?</p>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#m1').pseudocode();
+    });
+</script>
+<pre id="m1">
+function $M_1()$
+   print(x)
+</pre>
+
+<p>It might be for some integers. But consider the integer $11\cdots10$, where
+the $\cdots$ represents one million ones. Then the program above will have
+length $> 10^6$ characters, while</p>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#m2').pseudocode();
+  });
+</script>
+<pre id="m2">
+function $M_2()$
+   for $i=0$ until $10^6$
+       print(1)
+   print(0)
+</pre>
+<p>will have far fewer. The point is there might be all kinds of super
+efficient ways to encode patterns in the string.</p>
+
+<h3>Proof</h3>
+
+<p>Let's walk through the proof that this function cannot be computed.
+Intuitively, the argument is very similar to a fun word puzzle called
+the Berry Paradox. It goes like this:
+<blockquote><i>&quot;What is the smallest number that cannot be described in fewer than 100
+words?&quot;</i></blockquote>
+Think about whether this statement makes sense. If there were such an
+integer, we could describe it as the &quot;smallest number that cannot be
+described in fewer than 100 words&quot;, which is a description with fewer
+than 100 words.</p>
+
+<p>Now let's try to reproduce the paradox more formally. Suppose for the sake of
+contradiction that there existed a program called $M_K$ that could compute
+$K(x)$ (that's the length of shortest possible description of $x$, remember!) for
+any input $x$. We now construct another program $M_c$ (parametrized by some
+number $c$) that uses $M_K$ as a subroutine:</p>
+<script type="text/javascript">
+ $(document).ready(function() {
+     $('#mc').pseudocode();
+ });
+</script>
+<pre id="mc">
+function $M_c()$
+   for $i=0$ until $\infty$
+       if $M_k(i) > c$
+           print(i)
+           return
+</pre>
+
+<p>That's it, we are done! How so you might ask? The first step is to notice
+that $M_c$ is exactly the Berry Paradox with $100$ replaced by $c$. $M_c$ is a
+program with no arguments that outputs $x$ (for some integer
+$x$). Therefore it has to be longer than the shortest <i>possible</i> program
+that takes no arguments and outputs $x$. So the length of $M_c$, or $|M_c|$,
+must be an upper bound on $K(x)$, i.e. $|M_c| > K(x)$. We also know that $x$
+respected the condition of the &quot;if&quot; statement on line 3, so
+$K(x) > c$. See where this is going? All we have to do is fix a constant $c$
+big enough that $|M_c| < c$ and we have a contradiction!</p>
+
+<p>There are two technical snags that worrywarts might bring up. Let us address them:
+<ol>
+<li>What if there does not exist an integer $x$ such that $K(x) > c$? Not an
+issue. For any bound $A$, there are a finite number of programs with length
+$\leq A$, these output a finite set $S$ of things. Since there are an infinite
+number of integers, any integer $t$ outside of $S$ must have $K(t) > A$ since
+$t$ was not output by any program of length $\leq A$. In particular this is
+true of our choice of $c$.</li>
+<li>What if it is not possible to find $c$ such that $|M_c| < c$? It is true that
+$M_c$ needs to encode $c$, and so $|M_c|$ must grow with $c$. However if we do
+the obvious thing and encode $c$ in binary within $M_c$, then $|M_c|$ grows
+as $\mathcal{O}(\log c)$, while $c$ is $\Omega(c)$ (duh). Thus there is definitely such
+a $c$.</li>
+</ol>
 </p>
-
-<p>To summarize intuitively, a PAC learner is someone who can see a few examples
-of any animal, and then get an A+ on a test about that animal with very high
-probability. </p>
-
-<h3>Occam Learning</h3>
-
-<p>PAC Learning is an extensional notion of learning, in the sense that we
-measure how well we predict the class of a set of things. Now let's give an
-entirely different definition of learning that is more intensional:</p>
-
-<p><u><b>Definition</u></b> For $\alpha \geq 0$ and $0 \leq \beta < 1$, an
-$(\alpha, \beta)$<u><b>-Occam Learner</u></b> for class $\mathscr{C}$ is a
-learner that again takes a teacher $O(c, D)$ drawing $m$ examples from a
- distribution $D$. This time the algorithm outputs a hypothesis
-$h$ such that every example drawn from the teacher is consistent with $h$
-(meaning it contains all positive instances, and no negative instances).
-Furthermore, this $h$ has length $|h| \leq \left(n \cdot |c| \right)^\alpha m^\beta$
-(where $|\cdot|$ denotes the description length and $n$ is the description
-length of the largest sample given by $O(c,D)$). </p>
-
-<p> A critical detail in the definition is that $\beta$ is less than one,
-which means that Occam learners strictly compress the data. In contrast to a PAC
-learner, an Occam learner is someone who can see a few
-examples of any animal, and then describe succinctly what makes that animal
-different from the other animals. </p>
-
-<p> Which learner is better?</p>
-
-<h3>The Theorem</h3>
-
-<p>Trick question, reader. Turns out an Occam learner
-<i>is automatically</i> a PAC learner. To say that in math:</p>
-
-<p>For any efficient $(\alpha, \beta)$-Occam Learner $L$, there is a constant $k_1 > 0$ such
-that $L$ can draw $$m \geq k_1\left(\frac{1}{\varepsilon} \log \frac{1}{\delta} +
-\left(\frac{(n\cdot |c|)^\alpha}{\varepsilon}\right)^{\frac{1}{1-\beta}}\right)$$
-samples using $O(c,D)$, and then output a hypothesis $h$ such that
-$h\Delta c \leq \epsilon$ with probability greater than $1 - \delta$.
-</p>
-
-<p>The proof is done in two parts.</p>
-
-<h3>Lemma (aka the cardinality version of the theorem)</h3>
-
-<p>As a first step, we prove that an Occam learner for which the set of possible
-output hypotheses $H$ satisfies $$ \log |H| \leq k_2 \varepsilon m - \log \frac{1}{\delta}$$ is
-a PAC learner, for some choice of $k_2$.</p>
-
-<p>We would like exploit the fact that the hypothesis set is small to bound the
-probability of the undesirable situation in which our Occam algorithm outputs
-a hypothesis with large error region. Let us call this probability $B$. We want
-$B < \delta$.</p>
-
-<p>
-Consider the set of bad hypotheses, which are those with error mass
-$\geq \varepsilon$.
-Fix one possible bad hypothesis $h$. Because the sampled examples are i.i.d.,
-the probability that all the $m$ samples are consistent with the bad
-hypothesis is bounded by $(1 - \varepsilon)^m$. Using a simple union bound, the
-probability that <i>any</i> bad hypothesis is consistent with the $m$ samples is
-less than $|H|(1 - \varepsilon)^m$ where $|H|$ is the size of the possible
-hypothesis set (this is even a loose bound since the bad hypotheses are only
-a subset of the entire set of hypotheses).</p>
-<p>Using the assumption that $\log |H| \leq k_2 \varepsilon m - \log \frac{1}{\delta}$:
-\begin{align*}
-B &\leq |H|(1 - \varepsilon)^m \\
-& \leq 2^{k_2 \varepsilon m - \log \frac{1}{\delta}} (1 - \varepsilon)^m \\
-& = \delta \cdot 2^{k_2 \varepsilon m} (1 - \varepsilon)^m \\
-& = \delta \cdot 2^{k_2 \varepsilon m} 2^{m \log (1 - \varepsilon)} \\
-& = \delta \cdot 2^{m \left(k_2 \varepsilon - \log \frac{1}{1 - \varepsilon}\right)} \\
-& \leq \delta
-\end{align*}
-In the last step, we used the Taylor expansion of $\log \frac{1}{1-\varepsilon}$
-to guarantee that it is bigger than $k_2 \epsilon$ for some $k_2$.
-</p>
-
-<h3>Proof of the theorem</h3>
-
-<p>All we have left to show is that $L$ outputs hypotheses from a sufficiently small set,
-and then plug into the Lemma above.</p>
-
-<p>Using our assumption:
-\begin{align*}
-m &\geq k_1\left(\frac{1}{\varepsilon} \log \frac{1}{\delta} +
-\left(\frac{(n\cdot |c|)^\alpha}{\varepsilon}\right)^{\frac{1}{1-\beta}}\right) \\
-&\geq \max \left(\frac{k_1}{\varepsilon} \log \frac{1}{\delta} ,
-k_1 \left(\frac{(n\cdot |c|)^\alpha}{\varepsilon}\right)^{\frac{1}{1-\beta}}
- \right)
-\end{align*}
-
-<p>Rearranging the second bound on $m$, we have:
-\begin{align*}
-\left(\frac{m}{k_1}\right)^{1 - \beta} &\geq \frac{(n\cdot |c|)^\alpha}{\varepsilon} \\
-\frac{m}{k_1} &\geq \frac{(n\cdot |c|)^\alpha m^ \beta}{\varepsilon} \left(\frac{1}{k_1} \right)^\beta \\
-m & \geq \frac{k_1^{1-\beta}}{\varepsilon} \log |H| \tag{using $\log H \leq (n\cdot |c|)^\alpha m^\beta$} \\
-& \geq \frac{k_1}{\varepsilon} \log |H| \tag{since $\beta < 1$}
-\end{align*}
-If we pick $k_1 = \frac{2}{k_2}$, we have:
-$$m \geq \frac{2}{k_2 \varepsilon} \log \frac{1}{\delta} \quad\quad  \text{and} \quad\quad m \geq \frac{2}{k_2\varepsilon} \log |H|$$
-the extra $2$ was clever, because it now lets us write:
-$$m \geq \frac{1}{k_2 \varepsilon} \log |H| + \frac{1}{k_2 \varepsilon} \log \frac{1}{\delta}$$
-Finally, rearranging one last time:
-$$\log |H| \leq k_2 \varepsilon m - \log \frac{1}{\delta}$$
-which is exactly what we had to prove.
-</p>
-
 <h3>Implications and Discussion</h3>
 
-<p>
-We have shown that models that explain observed phenomena and can be summarized
-concisely &quot;understand&quot; nature. I personally think that captures a
-good chunk of the intuition in Occam's original razor, but I guess it's up to you.
-</p>
 
-<p> As I mentioned in the introduction this is a one directional implication.
-There has been some cool work on showing a partial converse. Under fairly
-general assumptions, the existence of a PAC algorithm implies the existence
-of an Occam algorithm [2].
-</p>
+<p>We have done some good work. We just proved that the optimal compression
+scheme for an arbitrary string cannot be determined in general (even though it
+exists and is well defined). This also goes by the name Full Employment Theorem,
+because it guarantees there will never be a one size fits all solution to
+compression: in other words there will always be work left for computer
+scientists to do.</p>
 
-<p>
-In his 1998 survey paper titles &quot;Occam's Two Razors: The Sharp and the Blunt&quot;
-[3] Pedro Domingos argues that Occam's razor is often abused in model selection.
-Specifically he criticizes this PAC theory theorem, saying that "the only
-connection of this result to Occam's razor is provided by the information-theoretic
-notion that, if a set of models is small, its members can be distinguished by
-short codes". As far as I can tell, Domingos is only aware of the cardinality
-version of the proof; the objection is resolved by the second argument.
-</p>
+<p>We can also derive the proof that the halting problem is incomputable as an
+easy corollary. If we could solve the halting problem, we can compute
+Kolmogorov complexity. Given an integer $x$, simply examine every Turing
+machine in lexicographical order. If it does not halt or return $x$, throw it away. If it
+halts and returns $x$, return the length of that Turing Machine which must be the complexity of $x$!</p>
 
-<p>For further reading I highly recommend the book by Kearns and Vazirani [4], from which
-the above proof is taken.</p>
-
-<h3>References</h3>
-<ol>
-<li><a href="http://www.cse.buffalo.edu/~hungngo/classes/2008/694/papers/occam.pdf">Occam's Razor</a>,
-by Anselm Blumer, Andrzej Ehrenfeucht, David Haussler, Manfred K. Warmuth</li>
-<li><a href="https://www.semanticscholar.org/paper/On-the-Necessity-of-Occam-Algorithms-Board-Pitt/87167c632da27ebde6da65770bda2fa32b029f0b">
-On the necessity of Occam algorithms</a> by Raymond A. Board and Leonard Pitt</li>
-<li><a href="https://www.semanticscholar.org/paper/Occam-s-Two-Razors-The-Sharp-and-the-Blunt-Domingos/d7845d20f5245218217404d3fe8fc4c5fd62c7ea">
-Occam's Two Razors: The Sharp and the Blunt</a> by Pedro Domingos</li>
-<li><a href="https://www.amazon.com/Introduction-Computational-Learning-Theory-Press/dp/0262111934">
-An Introduction to Computational Learning Theory</a> by Michael Kearns and Umesh Vazirani</li>
-</ol>
+<p>The proof uses a similar trick as in the classical proof of the halting
+problem of simultaneously viewing Turing Machines as both programs and
+integers. I wonder if one can formalize the statement that this dual view is
+an essential ingredient in proving incomputability. Is it true that all models
+that cannot be encoded as inputs to the model (as can Turing Machines on a
+Universal Turing Machine), do not suffer from this problem?</p>
 
 </div>
 </div>
@@ -327,10 +241,10 @@ An Introduction to Computational Learning Theory</a> by Michael Kearns and Umesh
       <h4>Posts</h4>
     </div>
     <ul class="w3-ul w3-hoverable w3-white">
-      <a href="entries/12.28.16.Occam/index.html" style="text-decoration: none">
+      <a href="entries/1.8.16.Occam/index.html" style="text-decoration: none">
 <li class="w3-padding-16">
   <span class="w3-large">Occam's Razor in Learning Theory</span><br>
-  <span>December 28, 2016</span>
+  <span>January 8, 2016</span>
 </li>
 </a>
 
