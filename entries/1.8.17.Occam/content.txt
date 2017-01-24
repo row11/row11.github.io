@@ -1,9 +1,9 @@
 <h5><blockquote><i>
   &quot;Entities must not be multiplied beyond necessity&quot;
 </i></blockquote></h5>
-<p> This is not a moratorium on raunchy dancing at an 8<sup>th</sup> grade
-party. This is Occam's famous razor: the principle that when deciding between
-two explanations for an observation, the simpler one will likely be better. </p>
+<p> This is not a quote from a sex-ed pamphlet. This is Occam's famous razor:
+the principle that when deciding between two explanations for an observation,
+the simpler one will likely be better. </p>
 
 <p> Those who shave with Occam's razor cite it as the epistemic justification for
   belief and are usually pro-science. Those who don't often criticize it as post

@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 def make_numeric_date(date_string):
     d = dateutil.parser.parse(date_string)
-    return "{0}-{1}-{2}".format(d.year, d.month, d.day)
+    return d.year*10000 + d.month*100 + d.day
 
 entries = os.listdir("entries")
 front_page = ""
