@@ -34,7 +34,8 @@ for entry in entries:
     content = open(path_prefix + "content.txt", "r").read()
     # Set the most recent post as the homepage
     formal_date = make_numeric_date(date)
-    result = template.replace("!!!title!!!", title).replace("!!!date!!!", date).replace("!!!posts!!!", posts_string).replace("!!!content!!!", content).replace("!!!image!!!", img)
+    stripped_title = title.replace(" ", "_").replace("\'", "").lower()
+    result = template.replace("!!!stripped_title!!!", stripped_title).replace("!!!title!!!", title).replace("!!!date!!!", date).replace("!!!posts!!!", posts_string).replace("!!!content!!!", content).replace("!!!image!!!", img)
     open(path_prefix + "index.html", "w").write(result)
     if formal_date > max_date:
         max_date = formal_date
