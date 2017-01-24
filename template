@@ -63,7 +63,7 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = !!!stripped_title!!!; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = '!!!stripped_title!!!'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
