@@ -19,9 +19,11 @@ for entry in entries:
     tree = ET.parse(path_prefix + "metadata.xml").getroot().find("post")
     title = tree.get("title")
     date = tree.get("date")
+    draft = tree.get("draft")
     link = path_prefix + "index.html"
     result = post_template.replace("!!!title!!!", title).replace("!!!date!!!", date).replace("!!!link!!!", link)
-    posts.append((result,make_numeric_date(date)))
+    if not draft == "true":
+        posts.append((result,make_numeric_date(date)))
 
 posts_string = "\n".join(map(lambda post: post[0], sorted(posts, key=lambda post: post[1], reverse=True)))
 
@@ -31,13 +33,14 @@ for entry in entries:
     title = tree.get("title")
     date = tree.get("date")
     img = tree.get("img")
+    draft = tree.get("draft")
     content = open(path_prefix + "content.txt", "r").read()
     # Set the most recent post as the homepage
     formal_date = make_numeric_date(date)
     stripped_title = title.replace(" ", "_").replace("\'", "").lower()
     result = template.replace("!!!stripped_title!!!", stripped_title).replace("!!!title!!!", title).replace("!!!date!!!", date).replace("!!!posts!!!", posts_string).replace("!!!content!!!", content).replace("!!!image!!!", img)
     open(path_prefix + "index.html", "w").write(result)
-    if formal_date > max_date:
+    if formal_date > max_date and not draft == "true":
         max_date = formal_date
         front_page = result
 

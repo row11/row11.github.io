@@ -193,8 +193,8 @@ different from the other animals. </p>
 <p>Trick question, reader. Turns out an Occam learner
 <i>is automatically</i> a PAC learner. To say that in math:</p>
 
-<p>For any efficient $(\alpha, \beta)$-Occam Learner $L$, there is a constant $k_1 > 0$ such
-that $L$ can draw $$m \geq k_1\left(\frac{1}{\varepsilon} \log \frac{1}{\delta} +
+<p>For any efficient $(\alpha, \beta)$-Occam Learner $L$, there is a constant $k > 0$ such
+that $L$ can draw $$m \geq k\left(\frac{1}{\varepsilon} \log \frac{1}{\delta} +
 \left(\frac{(n\cdot |c|)^\alpha}{\varepsilon}\right)^{\frac{1}{1-\beta}}\right)$$
 samples using $O(c,D)$, and then output a hypothesis $h$ such that
 $h\Delta c \leq \epsilon$ with probability greater than $1 - \delta$.
@@ -205,8 +205,8 @@ $h\Delta c \leq \epsilon$ with probability greater than $1 - \delta$.
 <h3>Lemma (aka the cardinality version of the theorem)</h3>
 
 <p>As a first step, we prove that an Occam learner for which the set of possible
-output hypotheses $H$ satisfies $$ \log |H| \leq k_2 \varepsilon m - \log \frac{1}{\delta}$$ is
-a PAC learner, for some choice of $k_2$.</p>
+output hypotheses $H$ satisfies $$ \log |H| \leq \varepsilon m - \log \frac{1}{\delta}$$ is
+a PAC learner.</p>
 
 <p>We would like exploit the fact that the hypothesis set is small to bound the
 probability of the undesirable situation in which our Occam algorithm outputs
@@ -223,17 +223,17 @@ probability that <i>any</i> bad hypothesis is consistent with the $m$ samples is
 less than $|H|(1 - \varepsilon)^m$ where $|H|$ is the size of the possible
 hypothesis set (this is even a loose bound since the bad hypotheses are only
 a subset of the entire set of hypotheses).</p>
-<p>Using the assumption that $\log |H| \leq k_2 \varepsilon m - \log \frac{1}{\delta}$:
+<p>Using the assumption that $\log |H| \leq \varepsilon m - \log \frac{1}{\delta}$:
 \begin{align*}
 B &\leq |H|(1 - \varepsilon)^m \\
-& \leq 2^{k_2 \varepsilon m - \log \frac{1}{\delta}} (1 - \varepsilon)^m \\
-& = \delta \cdot 2^{k_2 \varepsilon m} (1 - \varepsilon)^m \\
-& = \delta \cdot 2^{k_2 \varepsilon m} 2^{m \log (1 - \varepsilon)} \\
-& = \delta \cdot 2^{m \left(k_2 \varepsilon - \log \frac{1}{1 - \varepsilon}\right)} \\
+& \leq 2^{\varepsilon m - \log \frac{1}{\delta}} (1 - \varepsilon)^m \\
+& = \delta \cdot 2^{\varepsilon m} (1 - \varepsilon)^m \\
+& = \delta \cdot 2^{\varepsilon m} 2^{m \log (1 - \varepsilon)} \\
+& = \delta \cdot 2^{m \left( \varepsilon - \log \frac{1}{1 - \varepsilon}\right)} \\
 & \leq \delta
 \end{align*}
 In the last step, we used the Taylor expansion of $\log \frac{1}{1-\varepsilon}$
-to guarantee that it is bigger than $k_2 \epsilon$ for some $k_2$.
+to guarantee that it is bigger than $\epsilon$.
 </p>
 
 <h3>Proof of the theorem</h3>
@@ -243,26 +243,25 @@ and then plug into the Lemma above.</p>
 
 <p>Using our assumption:
 \begin{align*}
-m &\geq k_1\left(\frac{1}{\varepsilon} \log \frac{1}{\delta} +
+m &\geq k\left(\frac{1}{\varepsilon} \log \frac{1}{\delta} +
 \left(\frac{(n\cdot |c|)^\alpha}{\varepsilon}\right)^{\frac{1}{1-\beta}}\right) \\
-&\geq \max \left(\frac{k_1}{\varepsilon} \log \frac{1}{\delta} ,
-k_1 \left(\frac{(n\cdot |c|)^\alpha}{\varepsilon}\right)^{\frac{1}{1-\beta}}
+&\geq \max \left(\frac{k}{\varepsilon} \log \frac{1}{\delta} ,
+k \left(\frac{(n\cdot |c|)^\alpha}{\varepsilon}\right)^{\frac{1}{1-\beta}}
  \right)
 \end{align*}
 
 <p>Rearranging the second bound on $m$, we have:
 \begin{align*}
-\left(\frac{m}{k_1}\right)^{1 - \beta} &\geq \frac{(n\cdot |c|)^\alpha}{\varepsilon} \\
-\frac{m}{k_1} &\geq \frac{(n\cdot |c|)^\alpha m^ \beta}{\varepsilon} \left(\frac{1}{k_1} \right)^\beta \\
-m & \geq \frac{k_1^{1-\beta}}{\varepsilon} \log |H| \tag{using $\log H \leq (n\cdot |c|)^\alpha m^\beta$} \\
-& \geq \frac{k_1}{\varepsilon} \log |H| \tag{since $\beta < 1$}
+\left(\frac{m}{k}\right)^{1 - \beta} &\geq \frac{(n\cdot |c|)^\alpha}{\varepsilon} \\
+\frac{m}{k} &\geq \frac{(n\cdot |c|)^\alpha m^ \beta}{\varepsilon} \left(\frac{1}{k} \right)^\beta \\
+m & \geq \frac{k^{1-\beta}}{\varepsilon} \log |H| \tag{using $\log H \leq (n\cdot |c|)^\alpha m^\beta$}
 \end{align*}
-If we pick $k_1 = \frac{2}{k_2}$, we have:
-$$m \geq \frac{2}{k_2 \varepsilon} \log \frac{1}{\delta} \quad\quad  \text{and} \quad\quad m \geq \frac{2}{k_2\varepsilon} \log |H|$$
+If we pick $k = 2^{\frac{1}{1-\beta}}$, we have:
+$$m \geq \frac{2}{\varepsilon} \log \frac{1}{\delta} \quad\quad  \text{and} \quad\quad m \geq \frac{2}{\varepsilon} \log |H|$$
 the extra $2$ was clever, because it now lets us write:
-$$m \geq \frac{1}{k_2 \varepsilon} \log |H| + \frac{1}{k_2 \varepsilon} \log \frac{1}{\delta}$$
+$$m \geq \frac{1}{\varepsilon} \log |H| + \frac{1}{\varepsilon} \log \frac{1}{\delta}$$
 Finally, rearranging one last time:
-$$\log |H| \leq k_2 \varepsilon m - \log \frac{1}{\delta}$$
+$$\log |H| \leq \varepsilon m - \log \frac{1}{\delta}$$
 which is exactly what we had to prove.
 </p>
 
@@ -347,14 +346,7 @@ s.setAttribute('data-timestamp', +new Date());
       <h4>Posts</h4>
     </div>
     <ul class="w3-ul w3-hoverable w3-white">
-      <a href="../../entries/1.12.17.Tree_Metrics/index.html" style="text-decoration: none">
-<li class="w3-padding-16">
-  <span class="w3-large">Approximating Metrics by Tree Metrics</span><br>
-  <span>January 12, 2017</span>
-</li>
-</a>
-
-<a href="../../entries/1.8.17.Occam/index.html" style="text-decoration: none">
+      <a href="../../entries/1.8.17.Occam/index.html" style="text-decoration: none">
 <li class="w3-padding-16">
   <span class="w3-large">Occam's Razor in Learning Theory</span><br>
   <span>January 8, 2017</span>
