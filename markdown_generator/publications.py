@@ -73,6 +73,8 @@ for row, item in publications.iterrows():
     md = "---\ntitle: \""   + item.title + '"\n'
     
     md += """collection: publications"""
+
+    md += "\ncoauthors: '" + html_escape(item.coauthors) + "'"
     
     md += """\npermalink: /publication/""" + html_filename
     
