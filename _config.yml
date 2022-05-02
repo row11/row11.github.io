@@ -80,14 +80,15 @@ analytics:
 
 # Site Author
 author:
-  name             : "RoieLevin"
+  name             : "Roie Levin"
   avatar           : "profile.jpg"
   bio              : "I like submodular functions"
-  location         : "Location"
+  location         : 
   employer         :
+  dblp             : "https://dblp.org/pid/161/9976.html"
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=RxbhQBcAAAAJ&hl=en"
-  email            :
+  email            : "[my first name][the letter ell]@cs.cmu.edu"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -96,20 +97,21 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "academicpages"
+  github           : 
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         :
-  orcid            : "http://orcid.org/yourorcidurl"
+  orcid            : 
   pinterest        :
+  semanticscholar  : "https://www.semanticscholar.org/author/Roie-Levin/145872888"
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "replacethistwitterhandle"
+  twitter          : 
   vine             :
   weibo            :
   xing             :
