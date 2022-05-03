@@ -211,7 +211,7 @@
 .ai-semanticscholar:before {
   content: "\e862";
 }
-.ai-semanticscholar-square:before {
+.ai-semantic-scholar-square:before {
   content: "\e863";
 }
 /*  Duplication of the FontAwesome style classes using 'ai' in place of 'fa'. */
