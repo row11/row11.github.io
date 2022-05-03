@@ -5,6 +5,7 @@ type: "Undergraduate course"
 permalink: /teaching/4_2014-fall-french500
 venue: "Brown University"
 season: "Fall"
+professor: "Sonja Stojanovic"
 date: 2014-01-01
 location: "Providence, RI"
 ---
