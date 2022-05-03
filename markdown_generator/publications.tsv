@@ -1,9 +1,9 @@
-pub_date	title	coauthors	venue	excerpt	citation	url_slug	paper_url
-	Random Order Set Cover is as Easy as Offline	Anupam Gupta and Greg Kehne	FOCS 2021			rosc	https://arxiv.org/abs/2111.06842
-	Streaming Submodular Matching Meets the Primal-Dual Method	David Wajc	SODA 2021			smsm	https://arxiv.org/abs/2008.10062
-	Fully-Dynamic Submodular Cover with Bounded Recourse	Anupam Gupta	FOCS 2020			fdsc	https://arxiv.org/abs/2009.00800
-	Finding Skewed Subcubes Under a Distribution	Parikshit Gopalan and Udi Wieder	ITCS 2020			skewedsubcubes	https://arxiv.org/abs/1911.07378
-	The Online Submodular Cover Problem	Anupam Gupta	SODA 2020			osubcov	https://epubs.siam.org/doi/10.1137/1.9781611975994.94
-	Robust Subspace Approximation in a Stream	Anish Sevekari and David Woodruff	NeurIPS 2018			rsais	"https://papers.nips.cc/paper/2018/hash/f5e536083a438cec5b64a4954abc17f1-Abstract.html#:~:text=Abstract,()%20is%20some%20loss%20function."
-	Beyond Sentential Semantic Parsing: Tackling the Math SAT with a Cascade of Tree Transducers	"Mark Hopkins, Cristian Petrescu-Prahova, Ronan Le Bras, Alvaro Herrasti, and Vidur Joshi"	EMNLP 2017			euclid	https://aclanthology.org/D17-1083/
-	FigureSeer: Parsing Result-Figures in Research Papers	"Noah Siegel, Zachary Horvitz, Santosh Kumar Divvala, and Ali Farhadi"	ECCV 2016			figureseer	https://link.springer.com/chapter/10.1007/978-3-319-46478-7_41
+pub_date	index	title	coauthors	venue	excerpt	citation	url_slug	paper_url
+	8	Random Order Set Cover is as Easy as Offline	Anupam Gupta and Greg Kehne	FOCS 2021			rosc	https://arxiv.org/abs/2111.06842
+	7	Streaming Submodular Matching Meets the Primal-Dual Method	David Wajc	SODA 2021			smsm	https://arxiv.org/abs/2008.10062
+	6	Fully-Dynamic Submodular Cover with Bounded Recourse	Anupam Gupta	FOCS 2020			fdsc	https://arxiv.org/abs/2009.00800
+	5	Finding Skewed Subcubes Under a Distribution	Parikshit Gopalan and Udi Wieder	ITCS 2020			skewedsubcubes	https://arxiv.org/abs/1911.07378
+	4	The Online Submodular Cover Problem	Anupam Gupta	SODA 2020			osubcov	https://epubs.siam.org/doi/10.1137/1.9781611975994.94
+	3	Robust Subspace Approximation in a Stream	Anish Sevekari and David Woodruff	NeurIPS 2018			rsais	"https://papers.nips.cc/paper/2018/hash/f5e536083a438cec5b64a4954abc17f1-Abstract.html#:~:text=Abstract,()%20is%20some%20loss%20function."
+	2	Beyond Sentential Semantic Parsing: Tackling the Math SAT with a Cascade of Tree Transducers	"Mark Hopkins, Cristian Petrescu-Prahova, Ronan Le Bras, Alvaro Herrasti, and Vidur Joshi"	EMNLP 2017			euclid	https://aclanthology.org/D17-1083/
+	1	FigureSeer: Parsing Result-Figures in Research Papers	"Noah Siegel, Zachary Horvitz, Santosh Kumar Divvala, and Ali Farhadi"	ECCV 2016			figureseer	https://link.springer.com/chapter/10.1007/978-3-319-46478-7_41
