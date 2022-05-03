@@ -1,10 +1,10 @@
 ---
-title: "TA for Models of Computation (CS 51)"
+title: "TA for Writing and Speaking French (FREN 500)"
 collection: teaching
 type: "Undergraduate course"
-permalink: /teaching/2013-fall-cs51
+permalink: /teaching/4_2014-fall-french500
 venue: "Brown University"
 season: "Fall"
-date: 2013-01-01
+date: 2014-01-01
 location: "Providence, RI"
 ---
