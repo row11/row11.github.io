@@ -1,4 +1,5 @@
 pub_date	title	coauthors	venue	excerpt	citation	url_slug	paper_url
+	Competitive Algorithms for Block-Aware Caching	"Christian Coester, Seffi Naor, and Ohad Talmon"	SPAA 2022			9_block	
 	Random Order Set Cover is as Easy as Offline	Anupam Gupta and Greg Kehne	FOCS 2021			8_rosc	https://arxiv.org/abs/2111.06842
 	Streaming Submodular Matching Meets the Primal-Dual Method	David Wajc	SODA 2021			7_smsm	https://arxiv.org/abs/2008.10062
 	Fully-Dynamic Submodular Cover with Bounded Recourse	Anupam Gupta	FOCS 2020			6_fdsc	https://arxiv.org/abs/2009.00800
